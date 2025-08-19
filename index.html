@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="hero">
+    <img src="{{ url_for('static', filename='images/gita-campus.jpg') }}" alt="GITA Campus, Bhubaneswar">
+    <div class="hero-text">
+      <h1>GITA Previous Year Question Papers <span class="badge">New Format</span></h1>
+      <p>Mid (25) & End (100) papers • 1st to 4th year • Fast search</p>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="{{ url_for('papers_list') }}">Browse All Papers</a>
+        <a class="btn" href="{{ url_for('admin_login') }}">Admin Login</a>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Quick by Year</h2>
+  <div class="grid">
+    {% for y in years %}
+    <a class="card" href="{{ url_for('year_page', year=y) }}">
+      <h2>{{ y }}{% if y==1 %}st{% elif y==2 %}nd{% elif y==3 %}rd{% else %}th{% endif %} Year</h2>
+      <p>View semesters & subjects</p>
+    </a>
+    {% endfor %}
+  </div>
+{% endblock %}

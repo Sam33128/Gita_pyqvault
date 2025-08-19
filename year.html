@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="page-title">{{ year }}{% if year==1 %}st{% elif year==2 %}nd{% elif year==3 %}rd{% else %}th{% endif %} Year</h1>
+  <p class="subtle">Choose a semester to view subjects and papers.</p>
+
+  <div class="grid">
+    {% for sem in semesters %}
+      <a class="card" href="{{ url_for('semester_page', year=year, semester=sem) }}">
+        <h2>Semester {{ sem }}</h2>
+        <p>Subjects & papers</p>
+      </a>
+    {% endfor %}
+  </div>
+{% endblock %}

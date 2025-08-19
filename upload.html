@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="page-title">Upload Question Paper</h1>
+  <p class="subtle">Only admins with the password can upload.</p>
+
+  <form method="post" enctype="multipart/form-data" class="form">
+    <label>Year (1-4)
+      <input type="number" name="year" min="1" max="4" required>
+    </label>
+
+    <label>Semester (1-8)
+      <input type="number" name="semester" min="1" max="8" required>
+    </label>
+
+    <label>Subject
+      <input type="text" name="subject" placeholder="e.g., Engineering Mathematics I" required>
+    </label>
+
+    <label>Exam Type
+      <select name="exam_type" required>
+        <option value="">-- choose --</option>
+        <option value="Mid">Mid (25)</option>
+        <option value="End">End (100)</option>
+      </select>
+    </label>
+
+    <label>Exam Year / Academic Year
+      <input type="text" name="exam_year" placeholder="2024 or 2024-25" required>
+      <small class="subtle">Accepts 2024, 2024-25, or 2024-2025.</small>
+    </label>
+
+    <label>Files (PDF/JPG/PNG) — you can select multiple
+      <input type="file" name="files" accept=".pdf,.jpg,.jpeg,.png" multiple required>
+      <small class="subtle">Tip: hold Ctrl (Cmd on Mac) to pick several files.</small>
+    </label>
+
+    <button class="btn btn-primary" type="submit">Upload</button>
+  </form>
+{% endblock %}

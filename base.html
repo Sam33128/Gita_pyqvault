@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GITA PrepVault | GITA Previous Year Question Papers</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=10">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="{{ url_for('index') }}">
+        <img class="brand-logo" src="{{ url_for('static', filename='images/gita-logo.png') }}" alt="GITA logo">
+        <strong>GITA PrepVault</strong>
+      </a>
+
+      <div style="display:flex; gap:10px;">
+        <a class="btn btn-primary" href="{{ url_for('upload') }}">Upload Paper</a>
+        {% if session.get('is_admin') %}
+          <a class="btn" href="{{ url_for('admin_logout') }}">Logout</a>
+        {% endif %}
+      </div>
+    </div>
+  </nav>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="flash-wrap">
+        {% for cat, msg in messages %}
+          <div class="flash {{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <small>Made for GITA Autonomous College • Mid Sem (25) & End Sem (100)</small>
+  </footer>
+</body>
+</html>

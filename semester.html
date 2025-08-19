@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1 class="page-title">Year {{ year }} • Semester {{ semester }}</h1>
+  <p class="subtle">Pick a subject to view available papers.</p>
+
+  {% if subjects %}
+    <div class="grid">
+      {% for s in subjects %}
+        <a class="card" href="{{ url_for('papers_list', year=year, semester=semester, subject=s) }}">
+          <h2>{{ s }}</h2>
+          <p>View papers</p>
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p>No subjects found yet. Try uploading a paper.</p>
+  {% endif %}
+{% endblock %}
